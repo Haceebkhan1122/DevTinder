@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* DevTinder theme: deep navy surfaces + dark crimson accent */
+@theme {
+  --color-navy-950: #040a1a;
+  --color-navy-900: #08132b;
+  --color-navy-850: #0b1836;
+  --color-navy-800: #0f1f45;
+  --color-navy-700: #162a5a;
+  --color-navy-600: #203a75;
+  --color-navy-500: #2d4d93;
+  --color-navy-400: #4a69b0;
+
+  --color-crimson-800: #5c1222;
+  --color-crimson-700: #7d1a2e;
+  --color-crimson-600: #9c2139;
+  --color-crimson-500: #b8293f;
+  --color-crimson-400: #d4465c;
+  --color-crimson-300: #ec7d8e;
+
+  --color-ink: #eaf0fb;
+  --color-muted: #93a3c6;
+  --color-subtle: #64759c;
+  --color-line: #1e3263;
+
+  --color-success: #3ccf91;
+  --color-warning: #f2b45a;
+
+  --font-sans: var(--font-jakarta);
+  --font-display: var(--font-sora);
+
+  --animate-fade-up: fade-up 0.45s ease-out both;
+  --animate-toast-in: toast-in 0.25s ease-out both;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: var(--color-navy-950);
+  color: var(--color-ink);
+}
+
+body {
+  /* soft navy glow + a hint of crimson in the corner */
+  background-image:
+    radial-gradient(60rem 40rem at 10% -10%, rgb(45 77 147 / 0.28), transparent 60%),
+    radial-gradient(50rem 35rem at 110% 10%, rgb(125 26 46 / 0.22), transparent 60%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: var(--color-crimson-600);
+  color: white;
+}
+
+/* ---------- Reusable UI classes (use like: className="btn btn-primary") ---------- */
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-navy-900/80 shadow-[0_20px_60px_-25px_rgb(0_0_0/0.7)] backdrop-blur;
+  }
+
+  .btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition
+      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-crimson-400
+      disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primary {
+    @apply bg-linear-to-r from-crimson-600 to-crimson-500 text-white shadow-lg shadow-crimson-800/40
+      hover:from-crimson-500 hover:to-crimson-400;
+  }
+  .btn-secondary {
+    @apply border border-line bg-navy-800 text-ink hover:border-navy-500 hover:bg-navy-700;
+  }
+  .btn-ghost {
+    @apply text-muted hover:bg-navy-800 hover:text-ink;
+  }
+
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-muted;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-navy-950/70 px-3.5 py-2.5 text-sm text-ink placeholder:text-subtle
+      transition outline-none focus:border-crimson-500 focus:ring-2 focus:ring-crimson-500/30;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-navy-600 bg-navy-800 px-2.5 py-1 text-xs font-medium text-ink;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "devtinder",
+  "private": true,
+  "description": "devTinder: Express + MongoDB backend and Next.js frontend",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev"
+  }
+}
